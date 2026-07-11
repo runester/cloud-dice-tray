@@ -1,0 +1,39 @@
+{{define "index"}}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud Dice Tray</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/htmx.min.js" defer></script>
+</head>
+<body>
+  <main class="workbench">
+    <header>
+      <p class="eyebrow">Cloud Dice Tray</p>
+      <h1>Dice workbench</h1>
+      <p>Validate an expression privately, then roll when it is ready.</p>
+    </header>
+
+    <form id="dice-form">
+      <label for="expression">Dice expression</label>
+      <input id="expression" name="expression" type="text" maxlength="256"
+             placeholder="sum(maxk(3, 4d6))" autocomplete="off" required>
+      <div class="actions">
+        <button type="button" class="secondary" hx-post="/dice/validate"
+                hx-include="#expression" hx-target="#feedback" hx-swap="innerHTML">
+          Validate
+        </button>
+        <button type="button" hx-post="/dice/roll" hx-include="#expression"
+                hx-target="#feedback" hx-swap="innerHTML">
+          Roll
+        </button>
+      </div>
+    </form>
+
+    <section id="feedback" aria-live="polite">
+      <p class="hint">Try <code>d20 + 5</code>, <code>sum(4d6)</code>, or <code>max(2d20)</code>.</p>
+    </section>
+  </main>
+</body>
+</html>{{end}}

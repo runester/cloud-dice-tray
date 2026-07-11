@@ -1,0 +1,37 @@
+{{define "valid"}}
+<div class="notice success" role="status">
+  <strong>Expression is valid.</strong>
+  <span>No dice were rolled.</span>
+</div>
+{{end}}
+
+{{define "error"}}
+<div class="notice error" role="alert">
+  <strong>Expression error</strong>
+  <span>{{.Message}}</span>
+  {{if .Position}}<small>{{.Position}}</small>{{end}}
+</div>
+{{end}}
+
+{{define "result"}}
+<article class="result">
+  <div class="result-heading">
+    <span>Result</span>
+    <strong>{{.Value}}</strong>
+  </div>
+  <dl>
+    <div>
+      <dt>Expression</dt>
+      <dd><code>{{.Expression}}</code></dd>
+    </div>
+    <div>
+      <dt>Raw dice</dt>
+      <dd>
+        {{if .Rolls}}
+          {{range .Rolls}}<span class="roll"><code>{{.Notation}}</code> → {{.Values}}</span>{{end}}
+        {{else}}<span>No dice rolled</span>{{end}}
+      </dd>
+    </div>
+  </dl>
+</article>
+{{end}}

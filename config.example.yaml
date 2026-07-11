@@ -1,0 +1,12 @@
+server:
+  listen_address: "127.0.0.1:8080"
+  base_url: "http://127.0.0.1:8080"
+
+database:
+  path: "/var/lib/cloud-dice-tray/cloud-dice-tray.db"
+
+# These settings are reserved for the authentication increment.
+security:
+  session_secret_file: "/etc/cloud-dice-tray/session-secret"
+  admin_emails:
+    - "runester@gmail.com"
